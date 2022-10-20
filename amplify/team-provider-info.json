@@ -17,6 +17,9 @@
       },
       "custom": {
         "oktaCognitoOIDC": {}
+      },
+      "api": {
+        "202210061348amplifyc": {}
       }
     }
   }
