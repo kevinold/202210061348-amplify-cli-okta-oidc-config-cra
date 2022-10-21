@@ -2,6 +2,7 @@ import * as AmplifyHelpers from '@aws-amplify/cli-extensibility-helper';
 import * as cognito from "@aws-cdk/aws-cognito";
 import * as cdk from '@aws-cdk/core';
 import { AmplifyDependentResourcesAttributes } from '../../types/amplify-dependent-resources-ref';
+const backendConfig = require("../../../backend-config.json");
 
 export class cdkStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps, amplifyResourceProps?: AmplifyHelpers.AmplifyResourceProps) {
@@ -14,7 +15,7 @@ export class cdkStack extends cdk.Stack {
     /* AWS CDK code goes here - learn more: https://docs.aws.amazon.com/cdk/latest/guide/home.html */
     
     
-    const authResourceName = '202210061348amplifycae24809c'
+    const authResourceName = Object.keys(backendConfig.auth)[0]
     const dependencies: AmplifyDependentResourcesAttributes = AmplifyHelpers.addResourceDependency(this,
       amplifyResourceProps.category,
       amplifyResourceProps.resourceName,
