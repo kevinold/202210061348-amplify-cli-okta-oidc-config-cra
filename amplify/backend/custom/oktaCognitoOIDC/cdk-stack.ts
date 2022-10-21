@@ -1,8 +1,12 @@
 import * as AmplifyHelpers from '@aws-amplify/cli-extensibility-helper';
 import * as cognito from "@aws-cdk/aws-cognito";
 import * as cdk from '@aws-cdk/core';
+import dotenv from 'dotenv';
+import { env } from 'process';
 import { AmplifyDependentResourcesAttributes } from '../../types/amplify-dependent-resources-ref';
 const backendConfig = require("../../../backend-config.json");
+
+dotenv.config()
 
 export class cdkStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps, amplifyResourceProps?: AmplifyHelpers.AmplifyResourceProps) {
@@ -31,9 +35,9 @@ export class cdkStack extends cdk.Stack {
 
     new cognito.UserPoolIdentityProviderOidc(this, 'Okta', {
         name: "Okta",
-        clientId: '0oa6xoiavdlaKuK3q5d7',
-        clientSecret: 'fV9TMo7ATlUI0d7U_xHLroZNooyCXdCpTXvUTjtv',
-        issuerUrl: 'https://dev-89724366.okta.com',
+        clientId: env["OKTA_CLIENT_ID"],
+        clientSecret: env["OKTA_CLIENT_SECRET"],
+        issuerUrl: env["OKTA_ISSUER_URL"],
         userPool,
         attributeRequestMethod: cognito.OidcAttributeRequestMethod.POST,
         attributeMapping: {
