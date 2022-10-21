@@ -6,17 +6,19 @@ export function override(resources: AmplifyAuthCognitoStackTemplate) {
     // UserPoolClient CF Reference
     // https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cognito-userpoolclient.html
 
-    resources.userPoolClient.addOverride("Properties.SupportedIdentityProviders", ["Okta"])
-    resources.userPoolClient.addOverride("Properties.CallbackURLs", ["http://localhost:3000/"])
-    resources.userPoolClient.addOverride("Properties.LogoutURLs", ["http://localhost:3000/"])
-    resources.userPoolClient.addOverride("Properties.AllowedOAuthFlows", ["code"])
-    resources.userPoolClient.addOverride("Properties.AllowedOAuthFlowsUserPoolClient", "true")
-    resources.userPoolClient.addOverride("Properties.AllowedOAuthScopes", allowedOAuthScopes)
+    const { userPoolClient, userPoolClientWeb } = resources
 
-    resources.userPoolClientWeb.addOverride("Properties.SupportedIdentityProviders", ["Okta"])
-    resources.userPoolClientWeb.addOverride("Properties.CallbackURLs", ["http://localhost:3000/"])
-    resources.userPoolClientWeb.addOverride("Properties.LogoutURLs", ["http://localhost:3000/"])
-    resources.userPoolClientWeb.addOverride("Properties.AllowedOAuthFlows", ["code"])
-    resources.userPoolClientWeb.addOverride("Properties.AllowedOAuthFlowsUserPoolClient", "true")
-    resources.userPoolClientWeb.addOverride("Properties.AllowedOAuthScopes", allowedOAuthScopes)
+    userPoolClient.addPropertyOverride("SupportedIdentityProviders", ["Okta"])
+    userPoolClient.addPropertyOverride("CallbackURLs", ["http://localhost:3000/"])
+    userPoolClient.addPropertyOverride("LogoutURLs", ["http://localhost:3000/"])
+    userPoolClient.addPropertyOverride("AllowedOAuthFlows", ["code"])
+    userPoolClient.addPropertyOverride("AllowedOAuthFlowsUserPoolClient", "true")
+    userPoolClient.addPropertyOverride("AllowedOAuthScopes", allowedOAuthScopes)
+
+    userPoolClientWeb.addPropertyOverride("SupportedIdentityProviders", ["Okta"])
+    userPoolClientWeb.addPropertyOverride("CallbackURLs", ["http://localhost:3000/"])
+    userPoolClientWeb.addPropertyOverride("LogoutURLs", ["http://localhost:3000/"])
+    userPoolClientWeb.addPropertyOverride("AllowedOAuthFlows", ["code"])
+    userPoolClientWeb.addPropertyOverride("AllowedOAuthFlowsUserPoolClient", "true")
+    userPoolClientWeb.addPropertyOverride("AllowedOAuthScopes", allowedOAuthScopes)
 }
