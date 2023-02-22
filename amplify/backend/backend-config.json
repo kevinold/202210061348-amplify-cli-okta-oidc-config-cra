@@ -1,38 +1,60 @@
 {
+  "api": {
+    "202210061348amplifyc": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "202210061348amplifycae24809c"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "auth202210061348amplifycae24809c"
+            }
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
   "auth": {
     "202210061348amplifycae24809c": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
       "customAuth": false,
+      "dependsOn": [],
       "frontendAuthConfig": {
-        "socialProviders": [],
-        "usernameAttributes": [],
-        "signupAttributes": [
-          "EMAIL"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
-        },
         "mfaConfiguration": "OFF",
         "mfaTypes": [
           "SMS"
         ],
+        "passwordProtectionSettings": {
+          "passwordPolicyCharacters": [],
+          "passwordPolicyMinLength": 8
+        },
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "socialProviders": [],
+        "usernameAttributes": [],
         "verificationMechanisms": [
           "EMAIL"
         ]
-      }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito"
     }
   },
   "custom": {
     "oktaCognitoOIDC": {
-      "service": "customCDK",
-      "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
-          "category": "auth",
-          "resourceName": "202210061348amplifycae24809c",
           "attributes": [
             "IdentityPoolId",
             "IdentityPoolName",
@@ -43,35 +65,13 @@
             "UserPoolName",
             "AppClientIDWeb",
             "AppClientID"
-          ]
-        }
-      ]
-    }
-  },
-  "api": {
-    "202210061348amplifyc": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
+          ],
           "category": "auth",
-          "resourceName": "202210061348amplifycae24809c",
-          "attributes": [
-            "UserPoolId"
-          ]
+          "resourceName": "202210061348amplifycae24809c"
         }
       ],
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "auth202210061348amplifycae24809c"
-            }
-          },
-          "additionalAuthenticationProviders": []
-        }
-      }
+      "providerPlugin": "awscloudformation",
+      "service": "customCDK"
     }
   }
 }
